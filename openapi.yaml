@@ -1,0 +1,35 @@
+openapi: 3.0.1
+info:
+  title: Zevlix Store API
+  version: 1.0.0
+
+servers:
+  - url: https://zevlix-ai-backend.onrender.com
+
+paths:
+  /products:
+    get:
+      summary: Get all products
+      operationId: getProducts
+      responses:
+        '200':
+          description: Successful response
+
+  /cart/add:
+    post:
+      summary: Add product variant to cart and create checkout
+      operationId: addToCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                variantId:
+                  type: string
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          description: Checkout created
