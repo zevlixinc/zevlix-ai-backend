@@ -1,24 +1,46 @@
 openapi: 3.1.0
 info:
-  title: Zevlix Shopify API
+  title: Zevlix Shopify Storefront API
   version: 1.0.0
+  description: >
+    Backend API for Zevlix AI GPT to fetch products and create checkout sessions
+    from the Shopify Storefront API.
 
 servers:
   - url: https://zevlix-ai-backend.onrender.com
+    description: Render backend server
 
 paths:
   /products:
     get:
-      summary: Get all products
+      summary: Get product list from Shopify Storefront
       operationId: getProducts
       responses:
-        '200':
-          description: Successful response
+        "200":
+          description: Successful product fetch
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        description:
+                          type: string
+                        price:
+                          type: string
 
-  /cart/add:
+  /checkout:
     post:
-      summary: Add product variant to cart and create checkout
-      operationId: addToCart
+      summary: Create a checkout session
+      operationId: createCheckout
       requestBody:
         required: true
         content:
@@ -28,8 +50,21 @@ paths:
               properties:
                 variantId:
                   type: string
+                  description: Shopify variant ID
                 quantity:
                   type: integer
+                  description: Number of items
+              required:
+                - variantId
+                - quantity
       responses:
-        '200':
-          description: Checkout created
+        "200":
+          description: Checkout created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checkoutUrl:
+                    type: string
+
