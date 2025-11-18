@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
-  title: Zevlix Store API
+  title: Zevlix Shopify API
   version: 1.0.0
 
 servers:
