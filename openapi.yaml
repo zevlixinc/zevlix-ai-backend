@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Zevlix Shopify Storefront API
+  title: Zevlix Store API
   version: 1.0.0
   description: >
     Backend API for Zevlix AI GPT to fetch products and create checkout sessions
@@ -32,14 +32,12 @@ paths:
                           type: string
                         title:
                           type: string
-                        description:
-                          type: string
                         price:
-                          type: string
+                          type: number
 
   /checkout:
     post:
-      summary: Create a checkout session
+      summary: Create checkout session
       operationId: createCheckout
       requestBody:
         required: true
@@ -67,4 +65,3 @@ paths:
                 properties:
                   checkoutUrl:
                     type: string
-
